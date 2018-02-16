@@ -2,25 +2,23 @@ CREATE
     ALGORITHM = UNDEFINED 
     DEFINER = `root`@`localhost` 
     SQL SECURITY DEFINER
-VIEW wydzwonione AS
+VIEW `agencja`.`wydzwonione` AS
     SELECT 
-        dzwonienie.dzwonienie__ID AS dzwonienie__ID,
-        dzwonienie.dzw__kiedyzadzwonic AS dzw__kiedyzadzwonic,
-        dzwonienie.dzw__zadzwonione AS dzw__zadzwonione,
-        dzwonienie.klient_klient__ID AS klient_klient__ID,
-        klient.klient__ID AS klient__ID,
-        klient.klient__imie AS klient__imie,
-        klient.klient__nazwisko AS klient__nazwisko,
-        klient.klient__pesel AS klient__pesel,
-        klient.klient__numertelefonu AS klient__numertelefonu,
-        efekt_dzwonienia.efekt_dzwonienia__ID AS efekt_dzwonienia__ID,
-        efekt_dzwonienia.efekt_dzwonienia__opis AS efekt_dzwonienia__opis,
-        efekt_dzwonienia.dzwonienie_dzwonienie__ID AS dzwonienie_dzwonienie__ID
+        `agencja`.`dzwonienie`.`dzwonienie__ID` AS `dzwonienie__ID`,
+        `agencja`.`dzwonienie`.`dzw__kiedyzadzwonic` AS `dzw__kiedyzadzwonic`,
+        `agencja`.`dzwonienie`.`dzw__zadzwonione` AS `dzw__zadzwonione`,
+        `agencja`.`dzwonienie`.`klient_klient__ID` AS `klient_klient__ID`,
+        `agencja`.`klient`.`klient__ID` AS `klient__ID`,
+        `agencja`.`klient`.`klient__imie` AS `klient__imie`,
+        `agencja`.`klient`.`klient__nazwisko` AS `klient__nazwisko`,
+        `agencja`.`klient`.`klient__pesel` AS `klient__pesel`,
+        `agencja`.`klient`.`klient__numertelefonu` AS `klient__numertelefonu`,
+        `agencja`.`efekt_dzwonienia`.`efekt_dzwonienia__ID` AS `efekt_dzwonienia__ID`,
+        `agencja`.`efekt_dzwonienia`.`efekt_dzwonienia__opis` AS `efekt_dzwonienia__opis`,
+        `agencja`.`efekt_dzwonienia`.`dzwonienie_dzwonienie__ID` AS `dzwonienie_dzwonienie__ID`
     FROM
-        dzwonienie
-            LEFT JOIN
-        klient ON klient.klient__ID = dzwonienie.klient_klient__ID
-            LEFT JOIN
-        efekt_dzwonienia ON efekt_dzwonienia.dzwonienie_dzwonienie__ID = dzwonienie.dzwonienie__ID
+        ((`agencja`.`dzwonienie`
+        LEFT JOIN `agencja`.`klient` ON ((`agencja`.`klient`.`klient__ID` = `agencja`.`dzwonienie`.`klient_klient__ID`)))
+        LEFT JOIN `agencja`.`efekt_dzwonienia` ON ((`agencja`.`efekt_dzwonienia`.`dzwonienie_dzwonienie__ID` = `agencja`.`dzwonienie`.`dzwonienie__ID`)))
     WHERE
-        dzwonienie.dzw__zadzwonione = 1;
+        (`agencja`.`dzwonienie`.`dzw__zadzwonione` = 1);
