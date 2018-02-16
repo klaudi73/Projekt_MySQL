@@ -16,18 +16,22 @@ VIEW `agencja`.`lista_spotkan_z_klientami` AS
         `agencja`.`klient`.`klient__nazwisko` AS `klient__nazwisko`,
         `agencja`.`klient`.`klient__pesel` AS `klient__pesel`,
         `agencja`.`klient`.`klient__numertelefonu` AS `klient__numertelefonu`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__ID` AS `spotkania_miejsca__ID`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__nazwa_miejsca` AS `spotkania_miejsca__nazwa_miejsca`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__ulica` AS `spotkania_miejsca__ulica`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__nr_domu` AS `spotkania_miejsca__nr_domu`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__nr_lokalu` AS `spotkania_miejsca__nr_lokalu`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__miasto` AS `spotkania_miejsca__miasto`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__panstwo` AS `spotkania_miejsca__panstwo`,
         `agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__ID` AS `spotkanie_miejsce__ID`,
-        `agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__nazwa_miejsca` AS `spotkanie_miejsce__nazwa_miejsca`,
-        `agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__ulica` AS `spotkanie_miejsce__ulica`,
-        `agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__nr_domu` AS `spotkanie_miejsce__nr_domu`,
-        `agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__nr_lokalu` AS `spotkanie_miejsce__nr_lokalu`,
-        `agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__miasto` AS `spotkanie_miejsce__miasto`,
-        `agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__panstwo` AS `spotkanie_miejsce__panstwo`,
-        `agencja`.`spotkanie_miejsce`.`spotkanie_spotkanie__ID` AS `spotkanie_spotkanie__ID`
+        `agencja`.`spotkanie_miejsce`.`spotkania_miejsca_spotkanie_miejsce__ID` AS `spotkania_miejsca_spotkanie_miejsce__ID`,
+        `agencja`.`spotkanie_miejsce`.`spotkanie_spotkanie__ID` AS `spotkanie_miejsce__spotkanie_spotkanie__ID`
     FROM
-        ((`agencja`.`spotkanie`
+        (((`agencja`.`spotkanie`
         JOIN `agencja`.`klient`)
+        JOIN `agencja`.`spotkania_miejsca`)
         JOIN `agencja`.`spotkanie_miejsce`)
     WHERE
         ((`agencja`.`klient`.`klient__ID` = `agencja`.`spotkanie`.`klient_klient__ID`)
-            AND (`agencja`.`spotkanie`.`spotkanie__ID` = `agencja`.`spotkanie_miejsce`.`spotkanie_spotkanie__ID`));
+            AND (`agencja`.`spotkanie`.`spotkanie__ID` = `agencja`.`spotkanie_miejsce`.`spotkania_miejsca_spotkanie_miejsce__ID`)
+            AND (`agencja`.`spotkanie_miejsce`.`spotkania_miejsca_spotkanie_miejsce__ID` = `agencja`.`spotkania_miejsca`.`spotkania_miejsca__ID`))

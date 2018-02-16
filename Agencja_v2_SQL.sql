@@ -77,8 +77,8 @@ CREATE TABLE IF NOT EXISTS `agencja`.`efekt_dzwonienia` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
+DEFAULT CHARACTER SET = utf8
+COMMENT = 'Tabela zawierająca dane o efektach połączeń z klientami.';
 
 -- -----------------------------------------------------
 -- Table `agencja`.`spotkanie`
@@ -158,7 +158,8 @@ CREATE TABLE IF NOT EXISTS `agencja`.`spotkania_miejsca` (
   PRIMARY KEY (`spotkania_miejsca__ID`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = utf8
+COMMENT = 'Tabela zawierająca dane o miejscach spotkań z klientami.';
 
 
 -- -----------------------------------------------------
@@ -188,7 +189,8 @@ CREATE TABLE IF NOT EXISTS `agencja`.`wniosek` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = utf8
+COMMENT = 'Tabela zawierająca dane o podpisanych wnioskach z klientami.';
 
 
 -- -----------------------------------------------------
@@ -208,7 +210,8 @@ CREATE TABLE IF NOT EXISTS `agencja`.`umowa` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = utf8
+COMMENT = 'Tabela zawierająca dane o uruchomionych umowach z klientami.';
 
 
 -- -----------------------------------------------------
@@ -233,7 +236,8 @@ CREATE TABLE IF NOT EXISTS `agencja`.`spotkanie_miejsce` (
     REFERENCES `agencja`.`spotkanie` (`spotkanie__ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+COMMENT = 'Tabela zawierająca dane o miejcach spotkań z konkretnymi z klientami.';
 
 
 -- -----------------------------------------------------
@@ -252,24 +256,71 @@ CREATE TABLE IF NOT EXISTS `agencja`.`produkty_zaleznosc` (
     REFERENCES `agencja`.`produkty` (`produkty__ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+COMMENT = 'Tabela zawierająca dane o zależnościach produktów ubezpieczeniowych.';
 
 USE `agencja` ;
 
 -- -----------------------------------------------------
 -- Placeholder table for view `agencja`.`lista_dzwonienia`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `agencja`.`lista_dzwonienia` (`dzwonienie__ID` INT, `dzw__kiedyzadzwonic` INT, `dzw__zadzwonione` INT, `klient_klient__ID` INT, `klient__ID` INT, `klient__imie` INT, `klient__nazwisko` INT, `klient__pesel` INT, `klient__numertelefonu` INT);
+CREATE TABLE IF NOT EXISTS `agencja`.`lista_dzwonienia` (
+    `dzwonienie__ID` INT,
+    `dzw__kiedyzadzwonic` INT,
+    `dzw__zadzwonione` INT,
+    `klient_klient__ID` INT,
+    `klient__ID` INT,
+    `klient__imie` INT,
+    `klient__nazwisko` INT,
+    `klient__pesel` INT,
+    `klient__numertelefonu` INT
+)
+COMMENT = 'Tabela zawierająca dane o listach dzwonienia do klientów.';
 
 -- -----------------------------------------------------
 -- Placeholder table for view `agencja`.`lista_spotkan_z_klientami`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `agencja`.`lista_spotkan_z_klientami` (`spotkanie__ID` INT, `spot__termin` INT, `spot__przypomnienie_dni` INT, `spot__przypomnienie_godz` INT, `spot__przypomnienie_min` INT, `spot__odbylo_sie` INT, `klient_klient__ID` INT, `klient__ID` INT, `klient__imie` INT, `klient__nazwisko` INT, `klient__pesel` INT, `klient__numertelefonu` INT, `spotkanie_miejsce__ID` INT, `spotkanie_miejsce__nazwa_miejsca` INT, `spotkanie_miejsce__ulica` INT, `spotkanie_miejsce__nr_domu` INT, `spotkanie_miejsce__nr_lokalu` INT, `spotkanie_miejsce__miasto` INT, `spotkanie_miejsce__panstwo` INT, `spotkanie_spotkanie__ID` INT);
+CREATE TABLE IF NOT EXISTS `agencja`.`lista_spotkan_z_klientami` (
+    `spotkanie__ID` INT,
+    `spot__termin` INT,
+    `spot__przypomnienie_dni` INT,
+    `spot__przypomnienie_godz` INT,
+    `spot__przypomnienie_min` INT,
+    `spot__odbylo_sie` INT,
+    `klient_klient__ID` INT,
+    `klient__ID` INT,
+    `klient__imie` INT,
+    `klient__nazwisko` INT,
+    `klient__pesel` INT,
+    `klient__numertelefonu` INT,
+    `spotkanie_miejsce__ID` INT,
+    `spotkanie_miejsce__nazwa_miejsca` INT,
+    `spotkanie_miejsce__ulica` INT,
+    `spotkanie_miejsce__nr_domu` INT,
+    `spotkanie_miejsce__nr_lokalu` INT,
+    `spotkanie_miejsce__miasto` INT,
+    `spotkanie_miejsce__panstwo` INT,
+    `spotkanie_spotkanie__ID` INT
+)
+COMMENT = 'Tabela zawierająca dane o połączeniach z klientami.';
 
 -- -----------------------------------------------------
 -- Placeholder table for view `agencja`.`wydzwonione`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `agencja`.`wydzwonione` (`dzwonienie__ID` INT, `dzw__kiedyzadzwonic` INT, `dzw__zadzwonione` INT, `klient_klient__ID` INT, `klient__ID` INT, `klient__imie` INT, `klient__nazwisko` INT, `klient__pesel` INT, `klient__numertelefonu` INT, `efekt_dzwonienia__ID` INT, `efekt_dzwonienia__opis` INT, `dzwonienie_dzwonienie__ID` INT);
+CREATE TABLE IF NOT EXISTS `agencja`.`wydzwonione` (
+    `dzwonienie__ID` INT,
+    `dzw__kiedyzadzwonic` INT,
+    `dzw__zadzwonione` INT,
+    `klient_klient__ID` INT,
+    `klient__ID` INT,
+    `klient__imie` INT,
+    `klient__nazwisko` INT,
+    `klient__pesel` INT,
+    `klient__numertelefonu` INT,
+    `efekt_dzwonienia__ID` INT,
+    `efekt_dzwonienia__opis` INT,
+    `dzwonienie_dzwonienie__ID` INT
+);
 
 -- -----------------------------------------------------
 -- View `agencja`.`lista_dzwonienia`
@@ -277,7 +328,26 @@ CREATE TABLE IF NOT EXISTS `agencja`.`wydzwonione` (`dzwonienie__ID` INT, `dzw__
 DROP VIEW IF EXISTS `agencja`.`lista_dzwonienia` ;
 DROP TABLE IF EXISTS `agencja`.`lista_dzwonienia`;
 USE `agencja`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `agencja`.`lista_dzwonienia` AS select `agencja`.`dzwonienie`.`dzwonienie__ID` AS `dzwonienie__ID`,`agencja`.`dzwonienie`.`dzw__kiedyzadzwonic` AS `dzw__kiedyzadzwonic`,`agencja`.`dzwonienie`.`dzw__zadzwonione` AS `dzw__zadzwonione`,`agencja`.`dzwonienie`.`klient_klient__ID` AS `klient_klient__ID`,`agencja`.`klient`.`klient__ID` AS `klient__ID`,`agencja`.`klient`.`klient__imie` AS `klient__imie`,`agencja`.`klient`.`klient__nazwisko` AS `klient__nazwisko`,`agencja`.`klient`.`klient__pesel` AS `klient__pesel`,`agencja`.`klient`.`klient__numertelefonu` AS `klient__numertelefonu` from (`agencja`.`dzwonienie` join `agencja`.`klient`) where (`agencja`.`klient`.`klient__ID` = `agencja`.`dzwonienie`.`klient_klient__ID`);
+CREATE OR REPLACE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `agencja`.`lista_dzwonienia` AS
+    SELECT 
+        `agencja`.`dzwonienie`.`dzwonienie__ID` AS `dzwonienie__ID`,
+        `agencja`.`dzwonienie`.`dzw__kiedyzadzwonic` AS `dzw__kiedyzadzwonic`,
+        `agencja`.`dzwonienie`.`dzw__zadzwonione` AS `dzw__zadzwonione`,
+        `agencja`.`dzwonienie`.`klient_klient__ID` AS `klient_klient__ID`,
+        `agencja`.`klient`.`klient__ID` AS `klient__ID`,
+        `agencja`.`klient`.`klient__imie` AS `klient__imie`,
+        `agencja`.`klient`.`klient__nazwisko` AS `klient__nazwisko`,
+        `agencja`.`klient`.`klient__pesel` AS `klient__pesel`,
+        `agencja`.`klient`.`klient__numertelefonu` AS `klient__numertelefonu`
+    FROM
+        (`agencja`.`dzwonienie`
+        JOIN `agencja`.`klient`)
+    WHERE
+        (`agencja`.`klient`.`klient__ID` = `agencja`.`dzwonienie`.`klient_klient__ID`);
 
 -- -----------------------------------------------------
 -- View `agencja`.`lista_spotkan_z_klientami`
@@ -285,7 +355,44 @@ CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY D
 DROP VIEW IF EXISTS `agencja`.`lista_spotkan_z_klientami` ;
 DROP TABLE IF EXISTS `agencja`.`lista_spotkan_z_klientami`;
 USE `agencja`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `agencja`.`lista_spotkan_z_klientami` AS select `agencja`.`spotkanie`.`spotkanie__ID` AS `spotkanie__ID`,`agencja`.`spotkanie`.`spot__termin` AS `spot__termin`,`agencja`.`spotkanie`.`spot__przypomnienie_dni` AS `spot__przypomnienie_dni`,`agencja`.`spotkanie`.`spot__przypomnienie_godz` AS `spot__przypomnienie_godz`,`agencja`.`spotkanie`.`spot__przypomnienie_min` AS `spot__przypomnienie_min`,`agencja`.`spotkanie`.`spot__odbylo_sie` AS `spot__odbylo_sie`,`agencja`.`spotkanie`.`klient_klient__ID` AS `klient_klient__ID`,`agencja`.`klient`.`klient__ID` AS `klient__ID`,`agencja`.`klient`.`klient__imie` AS `klient__imie`,`agencja`.`klient`.`klient__nazwisko` AS `klient__nazwisko`,`agencja`.`klient`.`klient__pesel` AS `klient__pesel`,`agencja`.`klient`.`klient__numertelefonu` AS `klient__numertelefonu`,`agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__ID` AS `spotkanie_miejsce__ID`,`agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__nazwa_miejsca` AS `spotkanie_miejsce__nazwa_miejsca`,`agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__ulica` AS `spotkanie_miejsce__ulica`,`agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__nr_domu` AS `spotkanie_miejsce__nr_domu`,`agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__nr_lokalu` AS `spotkanie_miejsce__nr_lokalu`,`agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__miasto` AS `spotkanie_miejsce__miasto`,`agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__panstwo` AS `spotkanie_miejsce__panstwo`,`agencja`.`spotkanie_miejsce`.`spotkanie_spotkanie__ID` AS `spotkanie_spotkanie__ID` from ((`agencja`.`spotkanie` join `agencja`.`klient`) join `agencja`.`spotkanie_miejsce`) where ((`agencja`.`klient`.`klient__ID` = `agencja`.`spotkanie`.`klient_klient__ID`) and (`agencja`.`spotkanie`.`spotkanie__ID` = `agencja`.`spotkanie_miejsce`.`spotkanie_spotkanie__ID`));
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `agencja`.`lista_spotkan_z_klientami` AS
+    SELECT 
+        `agencja`.`spotkanie`.`spotkanie__ID` AS `spotkanie__ID`,
+        `agencja`.`spotkanie`.`spot__termin` AS `spot__termin`,
+        `agencja`.`spotkanie`.`spot__przypomnienie_dni` AS `spot__przypomnienie_dni`,
+        `agencja`.`spotkanie`.`spot__przypomnienie_godz` AS `spot__przypomnienie_godz`,
+        `agencja`.`spotkanie`.`spot__przypomnienie_min` AS `spot__przypomnienie_min`,
+        `agencja`.`spotkanie`.`spot__odbylo_sie` AS `spot__odbylo_sie`,
+        `agencja`.`spotkanie`.`klient_klient__ID` AS `klient_klient__ID`,
+        `agencja`.`klient`.`klient__ID` AS `klient__ID`,
+        `agencja`.`klient`.`klient__imie` AS `klient__imie`,
+        `agencja`.`klient`.`klient__nazwisko` AS `klient__nazwisko`,
+        `agencja`.`klient`.`klient__pesel` AS `klient__pesel`,
+        `agencja`.`klient`.`klient__numertelefonu` AS `klient__numertelefonu`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__ID` AS `spotkania_miejsca__ID`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__nazwa_miejsca` AS `spotkania_miejsca__nazwa_miejsca`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__ulica` AS `spotkania_miejsca__ulica`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__nr_domu` AS `spotkania_miejsca__nr_domu`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__nr_lokalu` AS `spotkania_miejsca__nr_lokalu`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__miasto` AS `spotkania_miejsca__miasto`,
+        `agencja`.`spotkania_miejsca`.`spotkania_miejsca__panstwo` AS `spotkania_miejsca__panstwo`,
+        `agencja`.`spotkanie_miejsce`.`spotkanie_miejsce__ID` AS `spotkanie_miejsce__ID`,
+        `agencja`.`spotkanie_miejsce`.`spotkania_miejsca_spotkanie_miejsce__ID` AS `spotkania_miejsca_spotkanie_miejsce__ID`,
+        `agencja`.`spotkanie_miejsce`.`spotkanie_spotkanie__ID` AS `spotkanie_miejsce__spotkanie_spotkanie__ID`
+    FROM
+        (((`agencja`.`spotkanie`
+        JOIN `agencja`.`klient`)
+        JOIN `agencja`.`spotkania_miejsca`)
+        JOIN `agencja`.`spotkanie_miejsce`)
+    WHERE
+        ((`agencja`.`klient`.`klient__ID` = `agencja`.`spotkanie`.`klient_klient__ID`)
+            AND (`agencja`.`spotkanie`.`spotkanie__ID` = `agencja`.`spotkanie_miejsce`.`spotkania_miejsca_spotkanie_miejsce__ID`)
+            AND (`agencja`.`spotkanie_miejsce`.`spotkania_miejsca_spotkanie_miejsce__ID` = `agencja`.`spotkania_miejsca`.`spotkania_miejsca__ID`));
+
 
 -- -----------------------------------------------------
 -- View `agencja`.`wydzwonione`
@@ -293,7 +400,30 @@ CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY D
 DROP VIEW IF EXISTS `agencja`.`wydzwonione` ;
 DROP TABLE IF EXISTS `agencja`.`wydzwonione`;
 USE `agencja`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `agencja`.`wydzwonione` AS select `agencja`.`dzwonienie`.`dzwonienie__ID` AS `dzwonienie__ID`,`agencja`.`dzwonienie`.`dzw__kiedyzadzwonic` AS `dzw__kiedyzadzwonic`,`agencja`.`dzwonienie`.`dzw__zadzwonione` AS `dzw__zadzwonione`,`agencja`.`dzwonienie`.`klient_klient__ID` AS `klient_klient__ID`,`agencja`.`klient`.`klient__ID` AS `klient__ID`,`agencja`.`klient`.`klient__imie` AS `klient__imie`,`agencja`.`klient`.`klient__nazwisko` AS `klient__nazwisko`,`agencja`.`klient`.`klient__pesel` AS `klient__pesel`,`agencja`.`klient`.`klient__numertelefonu` AS `klient__numertelefonu`,`agencja`.`efekt_dzwonienia`.`efekt_dzwonienia__ID` AS `efekt_dzwonienia__ID`,`agencja`.`efekt_dzwonienia`.`efekt_dzwonienia__opis` AS `efekt_dzwonienia__opis`,`agencja`.`efekt_dzwonienia`.`dzwonienie_dzwonienie__ID` AS `dzwonienie_dzwonienie__ID` from ((`agencja`.`dzwonienie` left join `agencja`.`klient` on((`agencja`.`klient`.`klient__ID` = `agencja`.`dzwonienie`.`klient_klient__ID`))) left join `agencja`.`efekt_dzwonienia` on((`agencja`.`efekt_dzwonienia`.`dzwonienie_dzwonienie__ID` = `agencja`.`dzwonienie`.`dzwonienie__ID`))) where (`agencja`.`dzwonienie`.`dzw__zadzwonione` = 1);
+CREATE OR REPLACE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `agencja`.`wydzwonione` AS
+    SELECT 
+        `agencja`.`dzwonienie`.`dzwonienie__ID` AS `dzwonienie__ID`,
+        `agencja`.`dzwonienie`.`dzw__kiedyzadzwonic` AS `dzw__kiedyzadzwonic`,
+        `agencja`.`dzwonienie`.`dzw__zadzwonione` AS `dzw__zadzwonione`,
+        `agencja`.`dzwonienie`.`klient_klient__ID` AS `klient_klient__ID`,
+        `agencja`.`klient`.`klient__ID` AS `klient__ID`,
+        `agencja`.`klient`.`klient__imie` AS `klient__imie`,
+        `agencja`.`klient`.`klient__nazwisko` AS `klient__nazwisko`,
+        `agencja`.`klient`.`klient__pesel` AS `klient__pesel`,
+        `agencja`.`klient`.`klient__numertelefonu` AS `klient__numertelefonu`,
+        `agencja`.`efekt_dzwonienia`.`efekt_dzwonienia__ID` AS `efekt_dzwonienia__ID`,
+        `agencja`.`efekt_dzwonienia`.`efekt_dzwonienia__opis` AS `efekt_dzwonienia__opis`,
+        `agencja`.`efekt_dzwonienia`.`dzwonienie_dzwonienie__ID` AS `dzwonienie_dzwonienie__ID`
+    FROM
+        ((`agencja`.`dzwonienie`
+        LEFT JOIN `agencja`.`klient` ON ((`agencja`.`klient`.`klient__ID` = `agencja`.`dzwonienie`.`klient_klient__ID`)))
+        LEFT JOIN `agencja`.`efekt_dzwonienia` ON ((`agencja`.`efekt_dzwonienia`.`dzwonienie_dzwonienie__ID` = `agencja`.`dzwonienie`.`dzwonienie__ID`)))
+    WHERE
+        (`agencja`.`dzwonienie`.`dzw__zadzwonione` = 1);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
