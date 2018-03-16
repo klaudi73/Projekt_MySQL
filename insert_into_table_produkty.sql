@@ -2,7 +2,7 @@
 -- Query: SELECT * FROM agencja.produkty
 LIMIT 0, 1000
 
--- Date: 2018-02-22 14:52
+-- Date: 2018-03-16 13:58
 */
 INSERT INTO `produkty` (`produkty__ID`,`prod__nazwa`,`prod__opis`) VALUES (1,'Komfort Życia','Ubezpieczenie na życie');
 INSERT INTO `produkty` (`produkty__ID`,`prod__nazwa`,`prod__opis`) VALUES (2,'Emerytura bez Obaw','Ubezpieczenie na życie z odkładaniem kapitału');

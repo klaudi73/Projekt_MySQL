@@ -2,7 +2,7 @@
 -- Query: SELECT * FROM agencja.produkty_zaleznosc
 LIMIT 0, 1000
 
--- Date: 2018-02-22 14:53
+-- Date: 2018-03-16 13:58
 */
 INSERT INTO `produkty_zaleznosc` (`produkty_zaleznosc__ID`,`produkty_produkty__ID`,`produkty_zaleznosc__parent__ID`) VALUES (1,1,0);
 INSERT INTO `produkty_zaleznosc` (`produkty_zaleznosc__ID`,`produkty_produkty__ID`,`produkty_zaleznosc__parent__ID`) VALUES (2,2,0);

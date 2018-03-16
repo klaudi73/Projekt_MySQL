@@ -2,7 +2,7 @@
 -- Query: SELECT * FROM agencja.klient
 LIMIT 0, 1000
 
--- Date: 2018-02-22 14:51
+-- Date: 2018-03-16 13:58
 */
 INSERT INTO `klient` (`klient__ID`,`klient__imie`,`klient__nazwisko`,`klient__pesel`,`klient__numertelefonu`) VALUES (1,'Imie_Test_001','Nazwisko_Test_001','01010112345','+48221234567');
 INSERT INTO `klient` (`klient__ID`,`klient__imie`,`klient__nazwisko`,`klient__pesel`,`klient__numertelefonu`) VALUES (2,'Imie_Test_002','Nazwisko_Test_002','02020223456','+48222345678');
